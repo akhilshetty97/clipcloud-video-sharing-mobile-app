@@ -6,6 +6,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import "../global.css";
 import { useColorScheme } from '@/hooks/useColorScheme';
+import { ClerkProvider, ClerkLoaded } from '@clerk/clerk-expo'
 
 SplashScreen.preventAutoHideAsync();
 
@@ -15,6 +16,13 @@ export default function RootLayout() {
     'outfit': require('../assets/fonts/Outfit-Regular.ttf')
   })
 
+  const publishableKey = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY!
+  if (!publishableKey) {
+    throw new Error(
+      'Missing Publishable Key. Please set EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY in your .env',
+    )
+  }
+  
   useEffect(() => {
     if (fontsLoaded) {
       SplashScreen.hideAsync();
@@ -26,10 +34,12 @@ export default function RootLayout() {
   }
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="index" />
-      </Stack>
-    </ThemeProvider>
+    <ClerkProvider publishableKey={publishableKey}>
+      <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+        <Stack screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="index" />
+        </Stack>
+      </ThemeProvider>
+    </ClerkProvider>
   );
 }

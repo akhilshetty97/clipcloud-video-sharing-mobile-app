@@ -4,7 +4,13 @@ module.exports = {
   content: ["./app/**/*.{js,jsx,ts,tsx}"],
   presets: [require("nativewind/preset")],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'outfit': ['Outfit'], 
+        'outfit-bold': ['OutfitBold'],
+        'outfit-thin': ['OutfitThin']
+      },
+    },
   },
   plugins: [],
 }
