@@ -4,6 +4,8 @@ import { useFonts } from 'expo-font';
 import LoginScreen from './LoginScreen/LoginScreen';
 import { SignedIn, SignedOut, useUser } from '@clerk/clerk-expo'
 import FirstScreen from './Home/FirstScreen'
+import { NavigationContainer } from '@react-navigation/native';
+import TabNavigation from './Navigation/TabNavigation';
 
 export default function HomeScreen() {
   const [fontsLoaded, fontError] = useFonts({
@@ -13,7 +15,9 @@ export default function HomeScreen() {
   return (
     <View className='flex-1'>
       <SignedIn>
-        <FirstScreen/>
+        <NavigationContainer>
+          <TabNavigation/>
+        </NavigationContainer>
       </SignedIn>
       <SignedOut>
         <LoginScreen/>

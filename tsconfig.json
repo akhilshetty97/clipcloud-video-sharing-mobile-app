@@ -14,5 +14,5 @@
     ".expo/types/**/*.ts",
     "expo-env.d.ts",
     "nativewind-env.d.ts"
-  ]
+, "app/Add/Add.tsx", "app/Add/Preview.jsx", "app/Home/FirstScreen.jsx"  ]
 }

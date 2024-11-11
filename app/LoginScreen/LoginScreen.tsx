@@ -29,10 +29,6 @@ const LoginScreen = () => {
             ])
             .select()
 
-            if(data)
-            {
-              console.log(data)
-            }
         }  
       } else {
         // Use signIn or signUp for next steps such as MFA
